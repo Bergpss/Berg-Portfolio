@@ -233,6 +233,22 @@ footer {
         cursor: pointer;
     }
 
+    .main-nav {
+        width: 100%;
+    }
+
+    .main-nav ul {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .main-nav.nav--active ul {
+        display: flex;
+    }
+
     /* 水平转纵向 */
     .work {
         flex-direction: column;

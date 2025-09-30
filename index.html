@@ -8,10 +8,10 @@
 </head>
 <body>
     <header>
-        <button class="menu">&#9776;</button>
+        <button class="menu" aria-expanded="false" aria-controls="main-menu">&#9776;</button>
         <h1>我是Berg</h1>
-        <nav>
-            <ul>
+        <nav class="main-nav" aria-expanded="false">
+            <ul id="main-menu">
                 <li><a href="https://run.guoyibo.top/">我的跑步</a></li>
                 <li><a href="https://blog.guoyibo.top/">我的博客</a></li>
                 <li><a href="#">我的社交媒体</a></li>
@@ -80,5 +80,7 @@
     <footer>
         <p>&copy; 2025 Berg. All Rights Reserved.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
