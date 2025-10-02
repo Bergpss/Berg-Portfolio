@@ -199,6 +199,62 @@ footer {
 
 .menu {
     display: none;
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.menu:focus-visible {
+    outline: 2px solid #1f1f1f;
+    outline-offset: 4px;
+}
+
+.menu__bar,
+.menu::before,
+.menu::after {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: 3px;
+    background-color: #1f1f1f;
+    border-radius: 3px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu__bar {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu::before,
+.menu::after {
+    content: "";
+}
+
+.menu::before {
+    top: 14px;
+}
+
+.menu::after {
+    bottom: 14px;
+}
+
+.menu.menu--open .menu__bar {
+    opacity: 0;
+}
+
+.menu.menu--open::before {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.menu.menu--open::after {
+    transform: translateY(-10px) rotate(-45deg);
 }
 
 /* 响应式设计语法 （responsive web design，RWD）  */
@@ -223,30 +279,50 @@ footer {
     /* 汉堡选单 */
     .menu {
         display: block;
-        background-color: transparent;
-        color: black;
-        font-size: 35px;
-        position: absolute;
-        top: 15px;
-        left: 20px;
-        border: none;
-        cursor: pointer;
     }
 
     .main-nav {
+        position: absolute;
+        top: 80px;
+        left: 0;
         width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        background-color: rgba(236, 238, 237, 0.96);
+        border-top: 1px solid rgba(31, 31, 31, 0.08);
+        transition: max-height 0.35s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        z-index: 10;
     }
 
     .main-nav ul {
-        display: none;
+        display: flex;
         flex-direction: column;
-        gap: 20px;
-        padding: 20px 0;
+        gap: 18px;
+        padding: 18px 0 26px;
         text-align: center;
+        position: static;
+        right: auto;
+        top: auto;
+        line-height: normal;
     }
 
-    .main-nav.nav--active ul {
-        display: flex;
+    .main-nav ul li a {
+        display: block;
+        padding: 10px 0;
+        transition: color 0.2s ease;
+    }
+
+    .main-nav ul li a:hover,
+    .main-nav ul li a:focus {
+        color: #3d5a2d;
+    }
+
+    .main-nav.nav--active {
+        max-height: 320px;
+        opacity: 1;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
 
     /* 水平转纵向 */
