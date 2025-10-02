@@ -23,16 +23,33 @@
     </header>
 
     <main>
-        <section class="me">
-            <h2>关于我</h2>
-            <p><strong>2022年，毕业后，我开始北漂</strong></p>
-            <p><strong>2025年，结束了两年半的北漂，我来到了大理</strong></p>
-            <!-- <p><a href="#">联系我</a></p> -->
-            <ol>
-                <li>我 讨厌 冲突</li>
-                <li>我 讨厌 emo的状态</li>
-                <li>我 讨厌 见不到阳光</li>
-            </ol>
+        <section class="me" aria-labelledby="about-title">
+            <div class="me-card">
+                <h2 id="about-title">关于我</h2>
+                <p class="me-intro">热爱探索的程序员，记录北漂与云南旅居之间的节奏变化。</p>
+
+                <div class="me-timeline" aria-label="个人节点">
+                    <div class="me-timeline__item">
+                        <span class="me-timeline__year">2022</span>
+                        <p>毕业后，我开始北漂</p>
+                    </div>
+                    <div class="me-timeline__item">
+                        <span class="me-timeline__year">2025</span>
+                        <p>结束两年半的北漂旅程，抵达大理</p>
+                    </div>
+                </div>
+
+                <div class="me-values">
+                    <h3>我的喜好</h3>
+                    <ol>
+                        <li>讨厌冲突，喜欢互相理解</li>
+                        <li>讨厌 emo，喜欢积极</li>
+                        <li>讨厌缺少日光，喜欢户外</li>
+                    </ol>
+                </div>
+
+                <a class="me-contact" href="mailto:hello@berg.dev">联系我</a>
+            </div>
         </section>
 
         <section class="quote">

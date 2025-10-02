@@ -65,36 +65,162 @@ header a:hover {
 }
 
 .me {
-    background-color: #ECEEED;
-    color: l;
-    height: 95vh;
-    /* background-image: url("images/Gemini_Generated_Image_4umbgj4umbgj4umb.png"); */
-    /* background-repeat: no-repeat; */
-    /* background-size: cover; */
-    /* background-position: center; */
+    background: linear-gradient(180deg, #ECEEED 0%, #f7f8f7 100%);
+    padding: 140px 10vw 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.me-card {
+    background: #ffffff;
+    max-width: 960px;
+    width: 100%;
+    padding: 72px 64px;
+    border-radius: 32px;
+    box-shadow: 0 30px 60px rgba(72, 86, 82, 0.15);
+    text-align: center;
     display: flex;
     flex-direction: column;
+    gap: 48px;
+}
+
+.me-card h2 {
+    font-size: 64px;
+    letter-spacing: 4px;
+}
+
+.me-intro {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #4a4c49;
+}
+
+.me-timeline {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 0 20px;
+}
+
+.me-timeline::before {
+    content: "";
+    position: absolute;
+    top: 26px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(31,31,31,0.1) 0%, rgba(224,233,163,0.7) 50%, rgba(31,31,31,0.1) 100%);
+    z-index: 0;
+}
+
+.me-timeline__item {
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    padding: 20px 24px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(72, 86, 82, 0.12);
+    min-width: 220px;
+}
+
+.me-timeline__year {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #E0E9A3;
+    color: #2f2f2f;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 14px;
 }
 
-.me h2 {
-    font-size: 60px;
-    margin-top: 60px;
+.me-timeline__item p {
+    color: #3d5a2d;
+    font-size: 16px;
+    font-weight: 600;
 }
 
-.me p {
-    color: sienna;
-    font-size: 18px;
-    margin: 25px 0;
+.me-values {
+    text-align: left;
+    align-self: center;
 }
 
-.me a {
-    color: green;
+.me-values h3 {
+    font-size: 24px;
+    margin-bottom: 18px;
+    color: #1f1f1f;
+    text-align: center;
+}
+
+.me-values ol {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: value;
+}
+
+.me-values li {
+    background: rgba(224, 233, 163, 0.35);
+    border-radius: 20px;
+    padding: 16px 22px;
+    font-size: 15px;
+    color: #2f2f2f;
+    line-height: 1.6;
+    box-shadow: 0 12px 24px rgba(72, 86, 82, 0.12);
+    position: relative;
+    padding-left: 58px;
+}
+
+.me-values li::before {
+    counter-increment: value;
+    content: counter(value, decimal-leading-zero);
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #485652;
+}
+
+.me-contact {
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    background: #485652;
+    color: #ffffff;
     text-decoration: none;
-    border: 1px solid #acacac;
-    padding: 10px 20px;
-    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.me-contact::after {
+    content: "→";
+    transition: transform 0.2s ease;
+}
+
+.me-contact:hover,
+.me-contact:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(72, 86, 82, 0.18);
+}
+
+.me-contact:hover::after,
+.me-contact:focus::after {
+    transform: translateX(4px);
 }
 
 .quote {
@@ -519,11 +645,6 @@ footer {
         transform: translateX(-50%);
     }
 
-    /* 字体大小 */
-    .me h2 {
-        font-size: 40px;
-    }
-
     /* 汉堡选单 */
     .menu {
         display: block;
@@ -609,6 +730,51 @@ footer {
     
     .info h2 {
         font-size: 30px;
+    }
+
+    .me {
+        padding: 120px 30px 100px;
+    }
+
+    .me-card {
+        padding: 56px 38px;
+        gap: 36px;
+    }
+
+    .me-card h2 {
+        font-size: 48px;
+        letter-spacing: 2px;
+    }
+
+    .me-intro {
+        font-size: 18px;
+    }
+
+    .me-timeline {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .me-timeline::before {
+        display: none;
+    }
+
+    .me-timeline__item {
+        width: 100%;
+    }
+
+    .me-values ol {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .me-values li {
+        padding-left: 52px;
+    }
+
+    .me-contact {
+        width: 100%;
+        justify-content: center;
     }
 
     .doing {
