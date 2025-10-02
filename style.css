@@ -136,28 +136,39 @@ header a:hover {
 }
 
 .doing {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 50px 10px 50px;
-}
-
-.doing div {
-    width: 300px;
+    padding: 60px 10vw;
     text-align: center;
 }
 
-.doing img {
+.doing h2 {
+    font-size: 48px;
+    margin-bottom: 40px;
+}
+
+.doing-list {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.doing-list > div {
+    width: 280px;
+}
+
+.doing-list img {
     width: 100%;
     border-radius: 10px;
 }
 
-.doing h3 {
+.doing-list h3 {
     font-size: 20px;
     margin: 20px 0;
 }
 
-.doing p {
+.doing-list p {
     font-size: 14px;
     line-height: 1.6em;
 }
@@ -537,12 +548,23 @@ footer {
     }
 
     .doing {
-        flex-direction: column;
-        padding: 60px 0;
+        padding: 60px 30px;
     }
 
-    .doing div {
+    .doing h2 {
+        font-size: 34px;
         margin-bottom: 30px;
+    }
+
+    .doing-list {
+        flex-direction: column;
+        gap: 28px;
+        align-items: center;
+    }
+
+    .doing-list > div {
+        width: 100%;
+        max-width: 360px;
     }
 
 }
