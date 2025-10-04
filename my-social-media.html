@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berg · 我的社交媒体</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <button class="menu" aria-label="切换主导航" aria-expanded="false" aria-controls="main-menu">
+            <span class="menu__bar"></span>
+        </button>
+        <h1><a href="index.html">我是Berg</a></h1>
+        <nav class="main-nav" aria-expanded="false">
+            <ul id="main-menu">
+                <li><a href="https://run.guoyibo.top/">我的跑步</a></li>
+                <li><a href="https://blog.guoyibo.top/">我的博客</a></li>
+                <li><a class="is-active" href="my-social-media.html">我的社交媒体</a></li>
+                <li><a href="my-media.html">我的自媒体账号</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="social-page">
+        <section class="social" aria-labelledby="social-title">
+            <div class="social-header">
+                <h2 id="social-title">我的社交媒体</h2>
+                <p>目前主要在 X（Twitter）分享灵感和日常。下面这张卡片告诉你我在这个平台做什么，以及如何参与对话。</p>
+            </div>
+
+            <div class="social-grid" role="list">
+                <article class="social-card social-card--x" role="listitem">
+                    <p>记录跑步进展、AI 编程实验、远程工作体验以及生活片段。这里的内容节奏轻快，也常以线程整理学习心得。</p>
+                    <ul class="social-meta">
+                        <li><strong>更新频率</strong><span>每周 3~4 条</span></li>
+                        <li><strong>主要语言</strong><span>中文 + English</span></li>
+                        <li><strong>互动方式</strong><span>欢迎私信、转发、开话题</span></li>
+                    </ul>
+                    <a class="social-card__link" href="https://x.com/PssBerg" target="_blank" rel="noopener">立刻前往 X</a>
+                </article>
+            </div>
+
+            <div class="social-tip">
+                <p>如果你想收到更详细的更新或合作提案，也欢迎写信告诉我你关注的话题，我会第一时间回复你。</p>
+                <a class="social-tip__button" href="mailto:hello@berg.dev">告诉我你想聊的主题</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Berg. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
