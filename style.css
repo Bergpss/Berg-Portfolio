@@ -924,6 +924,7 @@ footer {
     .me-timeline {
         flex-direction: column;
         gap: 24px;
+        align-items: center;
     }
 
     .me-timeline::before {
@@ -932,6 +933,8 @@ footer {
 
     .me-timeline__item {
         width: 100%;
+        max-width: 360px;
+        text-align: center;
     }
 
     .me-values ol {
