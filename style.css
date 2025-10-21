@@ -96,6 +96,24 @@ header a:hover {
     color: #4a4c49;
 }
 
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 3rem 0;
+}
+
+.social-links a {
+    color: #64748b; /* slate-500 */
+    font-size: 2rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #334155; /* slate-700 */
+}
+
 .me-timeline {
     position: relative;
     display: flex;
