@@ -268,6 +268,42 @@ header a:hover {
     opacity: 0.2;
 }
 
+.email-card {
+    background-color: #f0f4e8;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.email-text {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.email-copy {
+    background-color: #485652;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.email-copy:hover {
+    background-color: #5a6b66;
+}
+
+.email-hint {
+    font-size: 14px;
+    color: #3d5a2d;
+    margin-top: 10px;
+    display: block;
+}
+
+
+
 .quote {
     background-color: #485652;
     color: white;
