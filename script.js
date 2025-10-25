@@ -68,6 +68,121 @@ async function copyToClipboard(text) {
         return false;
     }
 }
+
+
+// ============================================
+// 技能进度条动画
+// ============================================
+
+// 1️⃣ 等待页面完全加载
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 2️⃣ 选择技能区域
+    const skillSection = document.querySelector('.skill');
+    
+    // 3️⃣ 检查元素是否存在
+    if (!skillSection) {
+        console.warn('技能区域未找到');
+        return;
+    }
+    
+    // 4️⃣ 创建观察者配置
+    const observerOptions = {
+        root: null,           // 使用浏览器视口作为参照
+        rootMargin: '0px',    // 无边距偏移
+        threshold: 0.2        // 当20%的区域可见时触发
+    };
+    
+    // 5️⃣ 定义回调函数：元素进入视口时会执行
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            // 6️⃣ 检查是否进入视口
+            if (entry.isIntersecting) {
+                console.log('技能区域进入视口！开始动画...');
+                
+                // 7️⃣ 触发动画
+                animateSkillBars();
+                
+                // 8️⃣ 停止观察（动画只执行一次）
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+    
+    // 9️⃣ 创建观察者实例
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    // 🔟 开始观察技能区域
+    observer.observe(skillSection);
+});
+
+// ============================================
+// 进度条动画函数
+// ============================================
+function animateSkillBars() {
+    // 1️⃣ 获取所有技能项
+    const skillItems = document.querySelectorAll('.skill-item');
+    
+    // 2️⃣ 遍历每个技能
+    skillItems.forEach((item, index) => {
+        // 3️⃣ 获取这个技能的填充条和百分比显示
+        const fill = item.querySelector('.skill-bar-fill');
+        const percentText = item.querySelector('.skill-percent');
+        
+        // 4️⃣ 读取目标百分比
+        const targetPercent = parseInt(fill.getAttribute('data-percent'));
+        
+        // 5️⃣ 延迟执行：让技能依次动画（更好看）
+        setTimeout(() => {
+            // 6️⃣ 设置进度条宽度（触发 CSS transition）
+            fill.style.width = targetPercent + '%';
+            
+            // 7️⃣ 数字跳动动画
+            animateNumber(percentText, 0, targetPercent, 1500);
+            
+        }, index * 100);  // 每个技能延迟100ms
+    });
+}
+
+// ============================================
+// 数字跳动动画函数
+// ============================================
+function animateNumber(element, start, end, duration) {
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+        // 1️⃣ 计算已经过去的时间
+        const elapsed = currentTime - startTime;
+        
+        // 2️⃣ 计算进度（0 到 1）
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // 3️⃣ 使用缓动函数（先快后慢）
+        const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+        
+        // 4️⃣ 计算当前数字
+        const current = Math.floor(start + (end - start) * easeOutProgress);
+        
+        // 5️⃣ 更新显示
+        element.textContent = current + '%';
+        
+        // 6️⃣ 如果还没结束，继续下一帧
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        } else {
+            // 确保最终值精确
+            element.textContent = end + '%';
+        }
+    }
+    
+    // 启动动画
+    requestAnimationFrame(update);
+}
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     // 点击「联系我」按钮，显示/隐藏邮箱卡片
     // 1. 获取「联系我」按钮和邮箱卡片元素
@@ -91,3 +206,4 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {emailHint.textContent=''}, 2000);
     });
 });
+
