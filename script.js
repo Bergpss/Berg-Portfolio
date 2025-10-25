@@ -10,35 +10,6 @@ if (menuButton && nav) {
     });
 }
 
-// const emailToggle = document.querySelector('.media-cta__button[data-email]');
-// const emailBox = document.querySelector('.media-email');
-
-// if (emailToggle && emailBox) {
-//     const emailTextEl = emailBox.querySelector('.media-email__text');
-//     const copyButton = emailBox.querySelector('.media-email__copy');
-//     const hintEl = emailBox.querySelector('.media-email__hint');
-//     const emailValue = emailToggle.dataset.email || (emailTextEl ? emailTextEl.textContent.trim() : '');
-
-//     emailToggle.addEventListener('click', () => {
-//         emailBox.hidden = false;
-//         emailToggle.setAttribute('aria-expanded', 'true');
-//         emailToggle.textContent = emailValue;
-//         emailToggle.disabled = true;
-//     });
-
-//     if (copyButton) {
-//         copyButton.addEventListener('click', async () => {
-//             const success = await copyToClipboard(emailValue);
-//             if (hintEl) {
-//                 hintEl.textContent = success ? '已复制' : '复制失败，请手动复制';
-//                 setTimeout(() => {
-//                     hintEl.textContent = '';
-//                 }, 2000);
-//             }
-//         });
-//     }
-// }
-
 async function copyToClipboard(text) {
     if (!text) {
         return false;
@@ -207,3 +178,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+// ============================================
+// 主题切换功能
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeIcon = document.querySelector('.theme-toggle__icon');
+
+    if (!themeToggle || !themeIcon) return;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme == 'dark') {
+        document.body.classList.add('dark-theme');
+        themeIcon.textContent = '🌙';
+    }
+
+    themeToggle.addEventListener('click', () => {
+        // 切换暗色主题类
+        const isDark = document.body.classList.toggle('dark-theme');
+
+        // 根据当前主题更新图标
+        if (isDark) {
+            themeIcon.textContent = '🌙';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            themeIcon.textContent = '☀️';
+            localStorage.setItem('theme', 'light');
+        }
+    });
+});
