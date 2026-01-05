@@ -1,178 +1,159 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I'm Berg</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="ijgKT5Qy/oaT6n0BMcQHxA" async></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #fafafa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .links a {
+            color: #fafafa;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .links a:hover {
+            color: #888;
+        }
+
+        .projects {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .projects a {
+            color: #fafafa;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .projects a:hover {
+            background: #1a1a1a;
+            border-color: #555;
+        }
+
+        .project-name {
+            font-weight: 500;
+        }
+
+        .project-desc {
+            color: #666;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        /* X icon */
+        .icon-x {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* 小红书 icon - simplified book shape */
+        .icon-xhs {
+            width: 16px;
+            height: 16px;
+            background: #fe2c55;
+            border-radius: 3px;
+            display: inline-block;
+        }
+    </style>
 </head>
+
 <body>
-    <header>
-        <button class="menu" aria-label="切换主导航" aria-expanded="false" aria-controls="main-menu">
-            <span class="menu__bar"></span>
-        </button>
+    <div class="container">
+        <h1>Berg</h1>
 
-        <h1><a href="index.html">我是Berg</a></h1>
-
-        <nav class="main-nav" aria-expanded="false">
-            <ul id="main-menu">
-                <li><a href="https://run.guoyibo.top/" target="_blank" rel="noopener noreferrer">我的跑步</a></li>
-                <li><a href="https://blog.guoyibo.top/" target="_blank" rel="noopener noreferrer">我的博客</a></li>
-                <li><a href="https://movie.guoyibo.top/" target="_blank" rel="noopener noreferrer">我的观影</a></li>
-                <li><a href="https://podcast.guoyibo.top/" target="_blank" rel="noopener noreferrer">我听的播客</a></li>
-                <li><a href="my-social-media.html">我的社交媒体</a></li>
-                <li><a href="my-media.html">我的自媒体账号</a></li>
-            </ul>
-        </nav>
-
-        <button class="theme-toggle" aria-label="切换主题">
-            <span class="theme-toggle__icon">☀️</span>
-        </button>
-    </header>
-
-    <main>
-        <section class="me" aria-labelledby="about-title">
-            <div class="me-card">
-                <h2 id="about-title">关于我</h2>
-                <p class="me-intro">我是 Berg</p>
-                <div class="social-links">
-                    <a href="https://github.com/bergpss" target="_blank" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://x.com/PssBerg" target="_blank" aria-label="Twitter">
-                        <i class="fa-brands fa-x-twitter"></i>
-                    </a>
-                    <a href="https://space.bilibili.com/29499066" target="_blank" aria-label="Bilibili">
-                        <i class="fab fa-bilibili"></i>
-                    </a>
-                    <a href="https://www.instagram.com/pssberg/" target="_blank" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-                <div class="me-timeline" aria-label="个人节点">
-                    <div class="me-timeline__item">
-                        <span class="me-timeline__year">2022</span>
-                        <p>毕业后，我开始北漂</p>
-                    </div>
-                    <div class="me-timeline__item">
-                        <span class="me-timeline__year">2025</span>
-                        <p>结束两年半的北漂旅程，抵达大理</p>
-                    </div>
-                </div>
-
-                <div class="me-values">
-                    <h3>我的喜好</h3>
-                    <ol>
-                        <li>喜欢运动</li>
-                        <li>喜欢自然</li>
-                        <li>喜欢各种电子产品</li>
-                    </ol>
-                </div>
-
-                <button class="me-contact-button">📮联系我</button>
-                <div class="email-card" hidden>
-                    <p class="email-text">pssberg182@gmail.com</p>
-                    <button class="email-copy">复制邮箱</button>
-                    <span class="email-hint"></span>
-                </div>
+        <div class="section">
+            <div class="section-title">社交媒体</div>
+            <div class="links">
+                <a href="https://x.com/PssBerg" target="_blank" rel="noopener noreferrer">
+                    <svg class="icon-x" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                    X
+                </a>
+                <a href="https://xhslink.com/m/3w6wYE0uSg6" target="_blank" rel="noopener noreferrer">
+                    <span class="icon-xhs"></span>
+                    小红书
+                </a>
             </div>
-        </section>
+        </div>
 
-        <section class="quote">
-            <blockquote>“梦想成为一名远程工作者！”</blockquote>
-        </section>
-
-        <section class="doing">
-            <h2>我正在做的事</h2>
-            <div class="doing-list">
-                <div>
-                    <img src="images/AI-programming.png" alt="Berg is programming.">
-                    <h3>AI编程</h3>
-                    <p>我正在vide-coding，希望能做出自己的产品</p>
-                </div>
-                <div>
-                    <img src="images/climbing.png" alt="Berg is climbing">
-                    <h3>攀岩</h3>
-                    <p>我正在大理行山岩馆学习攀岩</p>
-                </div>
-                <div>
-                    <img src="images/Air-volleyball.png" alt="Berg is playing air-volleyball">
-                    <h3>气排球</h3>
-                    <p>我正在大理与球友们共同练习气排球</p>
-                </div>
+        <div class="section">
+            <div class="section-title">Vibe Coding 作品</div>
+            <div class="projects">
+                <a href="https://aa.guoyibo.top" target="_blank" rel="noopener noreferrer">
+                    <div class="project-name">VibeSplit</div>
+                    <div class="project-desc">简约 AA 分摊工具</div>
+                </a>
+                <a href="https://movie.guoyibo.top" target="_blank" rel="noopener noreferrer">
+                    <div class="project-name">Movie Gallery</div>
+                    <div class="project-desc">我的观影记录</div>
+                </a>
             </div>
-        </section>
-        
-        <section class="work">
-            <img src="images/snsoft.png" alt="snsoft">
-            <div class="info">
-                <h2>我的工作经历</h2>
-                <p>北京南北软件科技有限公司</p>
-                <p>Java后端开发工程师</p>
-            </div>
-        </section>
-
-        <section class="skill" aria-labelledby="skill-title">
-            <h2 id="skill-title">我的技能</h2>
-            <p class="skill-intro">2.5年 Java 后端开发经验，正在学习前端技术</p>
-            
-            <div class="skill-category">
-                <h3 class="skill-category-title">后端开发技能</h3>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Java</span>
-                        <span class="skill-percent">0%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" data-percent="40"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Spring Boot</span>
-                        <span class="skill-percent">0%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" data-percent="10"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3 class="skill-category-title">前端开发技能</h3>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">HTML</span>
-                        <span class="skill-percent">0%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" data-percent="20"></div>
-                    </div>
-                </div>
-                
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">CSS</span>
-                        <span class="skill-percent">0%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" data-percent="20"></div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Berg. All Rights Reserved.</p>
-    </footer>
+        </div>
+    </div>
 </body>
+
 </html>

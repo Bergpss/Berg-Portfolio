@@ -208,3 +208,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// ============================================
+// Scroll Reveal Animation
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, observerOptions);
+
+    // Select all sections and cards to animate
+    const sections = document.querySelectorAll('section, .me-card, .social-card, .media-card, .doing-list > div');
+    sections.forEach(section => {
+        section.classList.add('fade-in-section');
+        observer.observe(section);
+    });
+});

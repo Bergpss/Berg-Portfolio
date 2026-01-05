@@ -2,63 +2,111 @@
      CSS 变量 - 主题颜色定义
      ============================================ */
 :root {
+    /* 字体定义 */
+    --font-heading: 'Outfit', 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', 'Plus Jakarta Sans', sans-serif;
+
     /* 背景颜色 */
-    --bg-primary: #FFFFFF;
-    --bg-secondary: #ECEEED;
-    --bg-card: #FFFFFF;
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.7);
+    --bg-glass: rgba(255, 255, 255, 0.8);
 
     /* 文字颜色 */
-    --text-primary: #1f1f1f; 
-    --text-secondary: #4a4c49;
+    --text-primary: #1a1c1e;
+    --text-secondary: #444746;
 
     /* 强调色 */
     --accent-color: #E0E9A3;
-    --accent-dark: #485652;
+    --accent-hover: #d4e085;
+    --accent-dark: #2d312f;
 
     /* 头部导航 */
-    --header-bg: rgba(236, 238, 237, 0.8);
-    --header-text: black;
+    --header-bg: rgba(255, 255, 255, 0.7);
+    --header-text: #1a1c1e;
+
+    /* 阴影 */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* dark mode */
 body.dark-theme {
     /* 背景颜色 */
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2d2d2d;
-    --bg-card: #252525;
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --bg-card: rgba(30, 30, 30, 0.7);
+    --bg-glass: rgba(30, 30, 30, 0.8);
 
     /* 文字颜色 */
-    --text-primary: #e0e0e0;
-    --text-secondary: #b0b0b0;
+    --text-primary: #e2e2e2;
+    --text-secondary: #a0a0a0;
 
     /* 强调色 */
     --accent-color: #E0E9A3;
-    --accent-dark: #6a7a75;
+    --accent-hover: #d4e085;
+    --accent-dark: #8e9e96;
 
     /* 头部导航 */
-    --header-bg: rgba(30, 30, 30, 0.95);
-    --header-text: #e0e0e0;
+    --header-bg: rgba(18, 18, 18, 0.7);
+    --header-text: #e2e2e2;
+
+    /* 阴影 - 暗色模式下稍微减弱或调整颜色 */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
+    /* 推荐加上这个 */
     /* 平滑过渡 */
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
 }
 
 header {
     background-color: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     height: 80px;
     width: 100%;
     position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5vw;
+    gap: 24px;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
 }
 
 h1 {
     color: var(--header-text);
-    position:absolute;
-    left: 120px;
-    top: 0;
     line-height: 80px;
     background-image: url(images/logo-trans.svg);
     background-repeat: no-repeat;
@@ -66,6 +114,8 @@ h1 {
     background-position: center;
     background-color: transparent;
     width: 210px;
+    height: 80px;
+
 }
 
 h1 a {
@@ -81,11 +131,30 @@ h1 a:focus-visible {
     outline-offset: 6px;
 }
 
-header ul {
-    position:absolute;
-    right: 5vw;
-    top:0;
-    line-height: 80px;
+.main-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+}
+
+.nav-group {
+    position: relative;
+}
+
+.nav-group__toggle {
+    font: inherit;
+    color: var(--header-text);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.nav-group__toggle:hover,
+.nav-group__toggle:focus-visible {
+    background: rgba(0, 0, 0, 0.05);
 }
 
 header li {
@@ -160,15 +229,25 @@ header a:hover {
 
 .me-card {
     background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     max-width: 960px;
     width: 100%;
     padding: 72px 64px;
     border-radius: 32px;
-    box-shadow: 0 30px 60px rgba(72, 86, 82, 0.15);
+    box-shadow: var(--shadow-xl);
     text-align: center;
     display: flex;
     flex-direction: column;
     gap: 48px;
+    position: relative;
+    overflow: hidden;
+}
+
+.me-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.15);
 }
 
 .me-card h2 {
@@ -192,13 +271,15 @@ header a:hover {
 }
 
 .social-links a {
-    color: #64748b; /* slate-500 */
+    color: #64748b;
+    /* slate-500 */
     font-size: 2rem;
     transition: color 0.3s ease;
 }
 
 .social-links a:hover {
-    color: #334155; /* slate-700 */
+    color: #334155;
+    /* slate-700 */
 }
 
 .me-timeline {
@@ -216,7 +297,7 @@ header a:hover {
     left: 10%;
     right: 10%;
     height: 2px;
-    background: linear-gradient(90deg, rgba(31,31,31,0.1) 0%, rgba(224,233,163,0.7) 50%, rgba(31,31,31,0.1) 100%);
+    background: linear-gradient(90deg, rgba(31, 31, 31, 0.1) 0%, rgba(224, 233, 163, 0.7) 50%, rgba(31, 31, 31, 0.1) 100%);
     z-index: 0;
 }
 
@@ -224,10 +305,18 @@ header a:hover {
     position: relative;
     z-index: 1;
     background: var(--bg-card);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 20px 24px;
     border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(72, 86, 82, 0.12);
+    box-shadow: var(--shadow-md);
     min-width: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.me-timeline__item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
 .me-timeline__year {
@@ -273,14 +362,21 @@ header a:hover {
 }
 
 .me-values li {
-    background: rgba(224, 233, 163, 0.35);
+    background: rgba(224, 233, 163, 0.2);
+    border: 1px solid rgba(224, 233, 163, 0.3);
     border-radius: 20px;
     padding: 16px 22px;
     font-size: 15px;
-    color: #2f2f2f;
+    color: var(--text-primary);
     line-height: 1.6;
-    box-shadow: 0 12px 24px rgba(72, 86, 82, 0.12);
+    box-shadow: var(--shadow-sm);
     position: relative;
+    font-weight: 500;
+}
+
+.me-values li:hover {
+    background: rgba(224, 233, 163, 0.4);
+    transform: translateY(-2px);
 }
 
 /* .me-values li::before {
@@ -347,7 +443,7 @@ header a:hover {
 
 .me-contact-button:hover {
     /* opacity: 0.7; */
-    background-color:rgb(203, 235, 141);
+    background-color: rgb(203, 235, 141);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
 }
 
@@ -451,7 +547,7 @@ header a:hover {
     margin: 0 auto;
 }
 
-.doing-list > div {
+.doing-list>div {
     width: 280px;
 }
 
@@ -500,9 +596,12 @@ header a:hover {
 }
 
 .skill-category {
-    max-width: 800px;       /* 最大宽度800px，不会太宽 */
-    margin: 0 auto 60px;    /* 水平居中，底部留60px空白 */
-    text-align: left;       /* 文字左对齐 */
+    max-width: 800px;
+    /* 最大宽度800px，不会太宽 */
+    margin: 0 auto 60px;
+    /* 水平居中，底部留60px空白 */
+    text-align: left;
+    /* 文字左对齐 */
 }
 
 .skill-category-title {
@@ -510,48 +609,77 @@ header a:hover {
     color: var(--text-primary);
     margin-bottom: 24px;
     padding-bottom: 12px;
-    border-bottom: 2px solid rgba(224, 233, 163, 0.6);  /* 淡绿黄色下划线 */
+    border-bottom: 2px solid rgba(224, 233, 163, 0.6);
+    /* 淡绿黄色下划线 */
 }
 
 .skill-header {
-    display: flex;                    /* 使用 Flexbox 布局 */
-    justify-content: space-between;   /* 两端对齐 */
-    align-items: center;              /* 垂直居中 */
+    display: flex;
+    /* 使用 Flexbox 布局 */
+    justify-content: space-between;
+    /* 两端对齐 */
+    align-items: center;
+    /* 垂直居中 */
     margin-bottom: 8px;
 }
 
 .skill-bar {
-    width: 100%;                              /* 占满整行 */
-    height: 10px;                             /* 高度10px */
-    background-color: rgba(72, 86, 82, 0.15); /* 浅灰色背景 */
-    border-radius: 999px;                     /* 圆角（胶囊形状）*/
-    overflow: hidden;                         /* ⚠️ 重点！隐藏超出部分 */
+    width: 100%;
+    /* 占满整行 */
+    height: 10px;
+    /* 高度10px */
+    background-color: rgba(72, 86, 82, 0.15);
+    /* 浅灰色背景 */
+    border-radius: 999px;
+    /* 圆角（胶囊形状）*/
+    overflow: hidden;
+    /* ⚠️ 重点！隐藏超出部分 */
     position: relative;
 }
 
 .skill-bar-fill {
-    height: 100%;                                           /* 和轨道同高 */
-    width: 0;                                               /* 🔥 初始宽度0%！*/
-    background: linear-gradient(90deg, #3d5a2d 0%, #485652 100%); /* 渐变绿色 */
+    height: 100%;
+    /* 和轨道同高 */
+    width: 0;
+    /* 🔥 初始宽度0%！*/
+    background: linear-gradient(90deg, #3d5a2d 0%, #485652 100%);
+    /* 渐变绿色 */
     border-radius: 999px;
-    transition: width 1.5s ease-out;                        /* 🔥 动画关键！*/
+    transition: width 1.5s ease-out;
+    /* 🔥 动画关键！*/
     position: relative;
 }
 
 .skill-bar-fill::after {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;   /* 覆盖整个填充部分 */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* 覆盖整个填充部分 */
     background: linear-gradient(90deg,
-        transparent 0%,                      /* 左边透明 */
-        rgba(255, 255, 255, 0.3) 50%,       /* 中间白色高光 */
-        transparent 100%);                   /* 右边透明 */
-    animation: shimmer 2s infinite;          /* 2秒循环动画 */
+            transparent 0%,
+            /* 左边透明 */
+            rgba(255, 255, 255, 0.3) 50%,
+            /* 中间白色高光 */
+            transparent 100%);
+    /* 右边透明 */
+    animation: shimmer 2s infinite;
+    /* 2秒循环动画 */
 }
 
 @keyframes shimmer {
-    0%   { transform: translateX(-100%); }   /* 从左边开始 */
-    100% { transform: translateX(100%); }    /* 移动到右边 */
+    0% {
+        transform: translateX(-100%);
+    }
+
+    /* 从左边开始 */
+    100% {
+        transform: translateX(100%);
+    }
+
+    /* 移动到右边 */
 }
 
 .social-page {
@@ -923,7 +1051,8 @@ header a:hover {
 
 }
 
-.newsletter input, .newsletter button {
+.newsletter input,
+.newsletter button {
     background-color: transparent;
     color: white;
     border: 1px solid #949d9a;
@@ -938,7 +1067,7 @@ header a:hover {
 
 .newsletter button {
     width: 80px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 input::placeholder {
@@ -1024,6 +1153,7 @@ footer {
 /* 响应式设计语法 （responsive web design，RWD）  */
 /* 当屏幕宽度小于 768px 时，应用以下操作 */
 @media screen and (max-width: 768px) {
+
     /* 防止导览页压迫到logo */
     header ul {
         display: none;
@@ -1117,7 +1247,7 @@ footer {
         width: 100%;
         padding: 40px 0;
     }
-    
+
     .info h2 {
         font-size: 30px;
     }
@@ -1237,7 +1367,7 @@ footer {
         align-items: center;
     }
 
-    .doing-list > div {
+    .doing-list>div {
         width: 100%;
         max-width: 360px;
     }
@@ -1258,4 +1388,50 @@ footer {
         padding: 28px 24px;
     }
 
+}
+
+/* ============================================
+     Animations
+     ============================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, visibility;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Apply float animation to hero image or card if desired */
+.me-card {
+    animation: float 6s ease-in-out infinite;
 }
