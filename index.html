@@ -3,542 +3,216 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Berg · 个人主页</title>
+  <title>Berg</title>
+  <meta name="description" content="Berg — Living with my best friend and our cat.">
   <link rel="icon" type="image/png" href="images/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ── TOKENS ── */
+    /* ============================================
+       设计变量（浅色）
+       ============================================ */
     :root {
-      --cream:   #f5f2ec;
-      --paper:   #ede9e0;
-      --green:   #7ab84a;
-      --green-d: #4a7a28;
-      --green-l: #d6edbc;
-      --coral:   #e0634a;
-      --coral-l: #f5d5cd;
-      --ink:     #1c1c1c;
-      --ink-2:   #4a4a4a;
-      --ink-3:   #888;
-      --white:   #fffdf8;
-      --yellow:  #f5e97a;
-      --shadow:  2px 4px 0 rgba(0,0,0,0.12);
-      --shadow-lg: 4px 8px 0 rgba(0,0,0,0.12);
-      --r: 18px;
-      --border: 2.5px solid var(--ink);
+      --bg:     #fbfbfa;
+      --text:   #1a1a1a;
+      --muted:  #6b6b6b;
+      --faint:  #a3a3a3;
+      --line:   #e8e8e6;
+      --hover:  #f2f2f0;
+      --accent: #1a1a1a;
+    }
+
+    /* ============================================
+       设计变量（深色）—— 跟随系统设置
+       ============================================ */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:     #131313;
+        --text:   #ededed;
+        --muted:  #9a9a9a;
+        --faint:  #666;
+        --line:   #262626;
+        --hover:  #1c1c1c;
+        --accent: #ededed;
+      }
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--cream);
-      color: var(--ink);
-      min-height: 100vh;
-      /* grain texture */
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+                   "Microsoft YaHei", "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── LAYOUT ── */
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ============================================
+       布局
+       ============================================ */
     .page {
-      max-width: 780px;
+      max-width: 560px;
       margin: 0 auto;
-      padding: 48px 24px 80px;
+      padding: 96px 20px 64px;
     }
 
-    /* ── HERO ── */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 56px;
-    }
+    /* ============================================
+       个人介绍
+       ============================================ */
+    .intro { margin-bottom: 64px; }
 
-    .avatar-wrap {
-      position: relative;
-      width: 160px;
-      height: 160px;
-    }
-
-    .avatar-wrap img {
-      width: 160px;
-      height: 160px;
-      border-radius: 36px;
-      border: var(--border);
-      box-shadow: var(--shadow-lg);
-      display: block;
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
       object-fit: cover;
       object-position: center top;
-    }
-
-    /* little crab badge */
-    .avatar-wrap::after {
-      content: '🦞';
-      position: absolute;
-      bottom: -10px;
-      right: -12px;
-      font-size: 28px;
-      filter: drop-shadow(1px 2px 0 rgba(0,0,0,0.2));
-      animation: wiggle 3s ease-in-out infinite;
-    }
-
-    @keyframes wiggle {
-      0%,100% { transform: rotate(-5deg) scale(1); }
-      50% { transform: rotate(8deg) scale(1.1); }
-    }
-
-    .hero-name {
-      font-family: 'Caveat', cursive;
-      font-size: 72px;
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -1px;
-      color: var(--ink);
-    }
-
-    .hero-name span {
-      color: var(--green-d);
-      position: relative;
-    }
-
-    .hero-name span::after {
-      content: '';
-      position: absolute;
-      bottom: 2px;
-      left: 0; right: 0;
-      height: 6px;
-      background: var(--yellow);
-      border-radius: 3px;
-      z-index: -1;
-      transform: rotate(-1deg);
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-    }
-
-    .tag {
-      font-family: 'Caveat', cursive;
-      font-size: 17px;
-      font-weight: 600;
-      padding: 4px 14px;
-      border-radius: 999px;
-      border: 2px solid var(--ink);
-      background: var(--white);
-      box-shadow: 2px 2px 0 var(--ink);
-      transition: transform 0.15s, box-shadow 0.15s;
-      cursor: default;
-    }
-
-    .tag:hover {
-      transform: translate(-1px, -2px);
-      box-shadow: 3px 4px 0 var(--ink);
-    }
-
-    .tag.green { background: var(--green-l); }
-    .tag.coral { background: var(--coral-l); }
-    .tag.yellow { background: var(--yellow); }
-
-    .hero-bio {
-      font-size: 15px;
-      color: var(--ink-2);
-      line-height: 1.8;
-      text-align: center;
-      max-width: 480px;
-    }
-
-    /* ── SOCIAL ROW ── */
-    .social-row {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .social-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 20px;
-      border-radius: 999px;
-      border: var(--border);
-      font-family: 'Caveat', cursive;
-      font-size: 18px;
-      font-weight: 600;
-      text-decoration: none;
-      color: var(--ink);
-      background: var(--white);
-      box-shadow: 3px 3px 0 var(--ink);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-
-    .social-btn:hover {
-      transform: translate(-2px, -3px);
-      box-shadow: 5px 6px 0 var(--ink);
-    }
-
-    .social-btn.x-btn { background: var(--ink); color: #fff; }
-    .social-btn.x-btn:hover { background: #333; }
-    .social-btn.xhs-btn { background: #ff2442; color: #fff; border-color: #cc0030; box-shadow: 3px 3px 0 #cc0030; }
-    .social-btn.xhs-btn:hover { box-shadow: 5px 6px 0 #cc0030; }
-
-    /* ── SECTION ── */
-    .section {
-      margin-bottom: 48px;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .section-title {
-      font-family: 'Caveat', cursive;
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--ink);
-    }
-
-    .section-line {
-      flex: 1;
-      height: 2.5px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--ink) 0px, var(--ink) 6px,
-        transparent 6px, transparent 12px
-      );
-      opacity: 0.2;
-      border-radius: 2px;
-    }
-
-    /* ── PROJECT GRID ── */
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    @media (max-width: 540px) {
-      .grid { grid-template-columns: 1fr; }
-      .hero-name { font-size: 56px; }
-    }
-
-    .card {
-      background: var(--white);
-      border: var(--border);
-      border-radius: var(--r);
-      padding: 18px 20px;
-      text-decoration: none;
-      color: var(--ink);
-      box-shadow: var(--shadow);
-      transition: transform 0.15s, box-shadow 0.15s;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--card-accent, var(--green));
-    }
-
-    .card:hover {
-      transform: translate(-2px, -3px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .card-name {
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    .card-desc {
-      font-size: 13px;
-      color: var(--ink-2);
-      line-height: 1.5;
-    }
-
-    .card-badge {
-      margin-top: 6px;
-      align-self: flex-start;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 999px;
-      border: 1.5px solid;
-      letter-spacing: 0.3px;
-    }
-
-    .badge-fly     { color: #8b5cf6; border-color: #8b5cf6; background: #f5f0ff; }
-    .badge-vercel  { color: #333;    border-color: #555;    background: #f5f5f5; }
-    .badge-pages   { color: #555;    border-color: #888;    background: #f5f5f5; }
-    .badge-cf      { color: #f38020; border-color: #f38020; background: #fff7f0; }
-    .badge-none    { color: #888;    border-color: #ccc;    background: #fafafa; }
-
-    /* accent color variants */
-    .card.accent-coral { --card-accent: var(--coral); }
-    .card.accent-yellow { --card-accent: var(--yellow); }
-    .card.accent-purple { --card-accent: #a78bfa; }
-    .card.accent-blue { --card-accent: #60a5fa; }
-
-    /* single-column card */
-    .card-wide {
-      grid-column: 1 / -1;
-    }
-
-    /* ── FOOTER ── */
-    .footer {
-      text-align: center;
-      font-family: 'Caveat', cursive;
-      font-size: 18px;
-      color: var(--ink-3);
-      padding-top: 24px;
-      border-top: var(--border);
-      opacity: 0.6;
-    }
-
-    /* ── TWEAKS PANEL ── */
-    #tweaks-panel {
-      display: none;
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--white);
-      border: var(--border);
-      border-radius: var(--r);
-      box-shadow: 6px 6px 0 var(--ink);
-      padding: 20px;
-      width: 260px;
-      z-index: 1000;
-      font-size: 13px;
-    }
-
-    #tweaks-panel.open { display: block; }
-
-    .tweaks-title {
-      font-family: 'Caveat', cursive;
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-
-    .tweak-row {
-      margin-bottom: 12px;
-    }
-
-    .tweak-row label {
       display: block;
+      margin-bottom: 24px;
+    }
+
+    .intro h1 {
+      font-size: 22px;
       font-weight: 600;
-      margin-bottom: 4px;
-      color: var(--ink-2);
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
     }
 
-    .tweak-row select,
-    .tweak-row input[type=range] {
-      width: 100%;
-      border: 1.5px solid var(--ink);
-      border-radius: 8px;
-      padding: 4px 8px;
-      font-family: inherit;
+    .intro p { color: var(--muted); }
+
+    /* ============================================
+       分组列表（作品 / 社交）
+       ============================================ */
+    .section { margin-bottom: 48px; }
+
+    .section h2 {
       font-size: 13px;
-      background: var(--cream);
-      cursor: pointer;
+      font-weight: 500;
+      color: var(--faint);
+      margin-bottom: 8px;
     }
 
-    .tweak-row input[type=range] { padding: 0; }
+    .list { list-style: none; }
+
+    .row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 12px 10px;
+      margin: 0 -10px;
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+
+    .row:hover { background: var(--hover); }
+
+    .row__name { font-weight: 500; white-space: nowrap; }
+
+    .row__desc {
+      color: var(--muted);
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .row__arrow {
+      color: var(--faint);
+      transition: transform 0.15s, color 0.15s;
+    }
+
+    .row:hover .row__arrow {
+      color: var(--text);
+      transform: translate(2px, -2px);
+    }
+
+    .list li + li { border-top: 1px solid var(--line); }
+
+    /* ============================================
+       页脚
+       ============================================ */
+    .footer {
+      font-size: 13px;
+      color: var(--faint);
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 480px) {
+      .page { padding-top: 56px; }
+    }
   </style>
 </head>
 <body>
 
-<div class="page">
+<main class="page">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="avatar-wrap">
-      <img src="images/avatar.jpg" alt="Berg & his claw friend">
-    </div>
+  <header class="intro">
+    <img class="avatar" src="images/avatar.jpg" alt="Berg 的头像">
+    <h1>Berg</h1>
+    <p>Living with my best friend and our cat.</p>
+  </header>
 
-    <h1 class="hero-name">Hi, I'm <span>Berg</span></h1>
-
-    <div class="hero-tags">
-      <span class="tag green">Vibe Coder 🌿</span>
-      <span class="tag coral">攀岩 🧗</span>
-      <span class="tag yellow">跑步 🏃</span>
-      <span class="tag">播客迷 🎙️</span>
-      
-    </div>
-
-    <p class="hero-bio">
-      用代码记录生活，用运动感受世界。<br>
-      业余 Vibe Coder，喜欢把想法变成能跑起来的小工具。
-    </p>
-
-    <div class="social-row">
-      <a class="social-btn x-btn" href="https://x.com/PssBerg" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-        @PssBerg
-      </a>
-      <a class="social-btn xhs-btn" href="https://xhslink.com/m/3w6wYE0uSg6" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <rect x="3" y="3" width="18" height="18" rx="4"/>
-          <path d="M8 8h8M8 12h8M8 16h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        小红书
-      </a>
-    </div>
+  <section class="section" aria-labelledby="work-title">
+    <h2 id="work-title">作品</h2>
+    <ul class="list">
+      <li>
+        <a class="row" href="https://movie.guoyibo.top" target="_blank" rel="noopener">
+          <span class="row__name">Movie Gallery</span>
+          <span class="row__desc">我的观影记录</span>
+          <span class="row__arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+    </ul>
   </section>
 
-  <!-- VIBE CODING -->
-  <section class="section">
-    <div class="section-header">
-      <h2 class="section-title">⚡ Vibe Coding 作品</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="grid">
-      <a class="card" href="https://aa.guoyibo.top" target="_blank" rel="noopener">
-        <div class="card-name">VibeSplit</div>
-        <div class="card-desc">简约 AA 分摊工具</div>
-        <span class="card-badge badge-fly">Fly.io</span>
-      </a>
-      <a class="card accent-blue" href="https://movie.guoyibo.top" target="_blank" rel="noopener">
-        <div class="card-name">Movie Gallery</div>
-        <div class="card-desc">我的观影记录</div>
-        <span class="card-badge badge-pages">GitHub Pages</span>
-      </a>
-      <a class="card accent-yellow" href="https://game.guoyibo.top" target="_blank" rel="noopener">
-        <div class="card-name">Game Gallery</div>
-        <div class="card-desc">我的游戏记录</div>
-        <span class="card-badge badge-vercel">Vercel</span>
-      </a>
-      <a class="card accent-coral" href="https://santa-hat.guoyibo.top" target="_blank" rel="noopener">
-        <div class="card-name">Santa Hat Generator</div>
-        <div class="card-desc">AI 圣诞帽生成器</div>
-        <span class="card-badge badge-cf">Cloudflare</span>
-      </a>
-      <a class="card accent-purple" href="https://podcast.guoyibo.top" target="_blank" rel="noopener">
-        <div class="card-name">Podcast Gallery</div>
-        <div class="card-desc">我听的播客</div>
-        <span class="card-badge badge-pages">GitHub Pages</span>
-      </a>
-      <a class="card accent-blue" href="https://workout.guoyibo.top" target="_blank" rel="noopener">
-        <div class="card-name">Workout Log</div>
-        <div class="card-desc">我的健身记录</div>
-        <span class="card-badge badge-vercel">Vercel</span>
-      </a>
-      <a class="card accent-coral card-wide" href="https://quit.guoyibo.top" target="_blank" rel="noopener">
-        <div class="card-name">北漂离职正计时 ⏳</div>
-        <div class="card-desc">离开北京的倒计时</div>
-        <span class="card-badge badge-none">自部署</span>
-      </a>
-    </div>
+  <section class="section" aria-labelledby="elsewhere-title">
+    <h2 id="elsewhere-title">在别处</h2>
+    <ul class="list">
+      <li>
+        <a class="row" href="https://x.com/PssBerg" target="_blank" rel="noopener">
+          <span class="row__name">X</span>
+          <span class="row__desc">@PssBerg</span>
+          <span class="row__arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li>
+        <a class="row" href="https://xhslink.com/m/3w6wYE0uSg6" target="_blank" rel="noopener">
+          <span class="row__name">小红书</span>
+          <span class="row__desc"></span>
+          <span class="row__arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li>
+        <a class="row" href="https://v.douyin.com/sH-AyfMzN7U/" target="_blank" rel="noopener">
+          <span class="row__name">抖音</span>
+          <span class="row__desc"></span>
+          <span class="row__arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li>
+        <a class="row" href="https://space.bilibili.com/29499066" target="_blank" rel="noopener">
+          <span class="row__name">bilibili</span>
+          <span class="row__desc"></span>
+          <span class="row__arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+    </ul>
   </section>
 
-  <!-- WRITING -->
-  <section class="section">
-    <div class="section-header">
-      <h2 class="section-title">✍️ 我的写作</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="grid">
-      <a class="card card-wide" href="https://blog.guoyibo.top" target="_blank" rel="noopener">
-        <div class="card-name">Berg's Blog</div>
-        <div class="card-desc">读书笔记 · 播客笔记 — 记录有意思的想法</div>
-        <span class="card-badge badge-pages">GitHub Pages</span>
-      </a>
-    </div>
-  </section>
+  <footer class="footer">© 2026 Berg · guoyibo.top</footer>
 
-  <!-- SPORTS -->
-  <section class="section">
-    <div class="section-header">
-      <h2 class="section-title">🏃 我的运动</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="grid">
-      <a class="card accent-coral card-wide" href="https://run.guoyibo.top" target="_blank" rel="noopener">
-        <div class="card-name">Running Page</div>
-        <div class="card-desc">我的跑步记录 — 每一步都算数</div>
-        <span class="card-badge badge-vercel">Vercel</span>
-      </a>
-    </div>
-  </section>
+</main>
 
-  <footer class="footer">
-    Made with ☕ & vibes · guoyibo.top
-  </footer>
-
-</div>
-
-<!-- TWEAKS PANEL -->
-<div id="tweaks-panel">
-  <div class="tweaks-title">🎨 Tweaks</div>
-
-  <div class="tweak-row">
-    <label>主题色</label>
-    <select id="tweak-theme" onchange="applyTheme(this.value)">
-      <option value="green">绿色（默认）</option>
-      <option value="blue">蓝色</option>
-      <option value="warm">暖橙</option>
-      <option value="dark">深色</option>
-    </select>
-  </div>
-
-  <div class="tweak-row">
-    <label>卡片圆角</label>
-    <input type="range" min="4" max="32" value="18" id="tweak-radius"
-      oninput="document.documentElement.style.setProperty('--r', this.value+'px')">
-  </div>
-
-  <div class="tweak-row">
-    <label>头像大小</label>
-    <input type="range" min="100" max="220" value="160" id="tweak-avatar"
-      oninput="document.querySelector('.avatar-wrap img').style.width = document.querySelector('.avatar-wrap img').style.height = this.value+'px'">
-  </div>
-</div>
-
-<script>
-  // Tweaks toggle
-  window.addEventListener('message', (e) => {
-    if (e.data?.type === '__activate_edit_mode') document.getElementById('tweaks-panel').classList.add('open');
-    if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').classList.remove('open');
-  });
-  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
-
-  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "theme": "green",
-    "radius": 18,
-    "avatarSize": 160
-  }/*EDITMODE-END*/;
-
-  function applyTheme(t) {
-    const root = document.documentElement;
-    const themes = {
-      green: { '--green': '#7ab84a', '--green-d': '#4a7a28', '--green-l': '#d6edbc', '--cream': '#f5f2ec', '--paper': '#ede9e0' },
-      blue:  { '--green': '#4a90d9', '--green-d': '#1a5fa8', '--green-l': '#cce0f5', '--cream': '#f0f4f8', '--paper': '#e5edf5' },
-      warm:  { '--green': '#e0904a', '--green-d': '#a85a1a', '--green-l': '#f5dfc0', '--cream': '#f8f3ee', '--paper': '#f0e8df' },
-      dark:  { '--green': '#7ab84a', '--green-d': '#a8e070', '--green-l': '#2a3d1a', '--cream': '#1a1a1a', '--paper': '#222', '--ink': '#f0f0f0', '--ink-2': '#ccc', '--white': '#2a2a2a' },
-    };
-    Object.entries(themes[t] || themes.green).forEach(([k, v]) => root.style.setProperty(k, v));
-    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { theme: t } }, '*');
-  }
-
-  // Apply saved defaults
-  applyTheme(TWEAK_DEFAULTS.theme);
-  document.documentElement.style.setProperty('--r', TWEAK_DEFAULTS.radius + 'px');
-</script>
 </body>
 </html>
