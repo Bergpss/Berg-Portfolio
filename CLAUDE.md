@@ -26,7 +26,7 @@ This is a static site with **no package.json** and **no build process**.
 
 ```
 ├── index.html      # 唯一页面：极简 link-in-bio（内联样式，无 JS）
-├── images/         # avatar.jpg、favicon.png
+├── images/         # avatar.jpg、favicon.svg（标签页图标）、apple-touch-icon.png（iOS 主屏图标）
 ├── llm/            # Learning documentation (gitignored)
 └── CNAME           # GitHub Pages custom domain
 ```
